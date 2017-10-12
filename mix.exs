@@ -48,7 +48,7 @@ defmodule Serv.Mixfile do
       files: ["lib", "mix.exs", "test", "doc", "deps", "config", "README.md"],
       maintainers: ["Feodor Terekhov"],
       licenses: ["OpenSource"],
-      links: %{"GitHub" => "https://github.com/Feo740/GenServer"}
+      links: %{"GitHub" => "https://github.com/Feo740/feo_kvstore"}
     ]
   end
 
