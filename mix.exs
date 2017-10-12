@@ -4,14 +4,14 @@ defmodule Serv.Mixfile do
   def project do
     [
       app: :serv,
-      version: "0.1.1",
+      version: "0.1.2",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       description: description(), #
       package: package(),
       deps: deps(),
       name: "Database_serv",
-      source_url: "https://github.com/Feo740/GenServer"
+      source_url: "https://github.com/Feo740/feo_kvstore"
     ]
   end
 
@@ -30,7 +30,7 @@ defmodule Serv.Mixfile do
     [
       {:cowboy, "~> 1.1.2"},
       {:plug, "~> 1.3.5"},
-  #  {:ex_doc, ">= 0.0.0", only: :dev},
+      {:ex_doc, ">= 0.0.0", only: :dev},
           #{:ex_doc, github: "elixir-lang/ex_doc"},
   #  {:markdown, github: "devinus/markdown"}
       #{:serv, "0.1.0"}
@@ -40,7 +40,7 @@ defmodule Serv.Mixfile do
   end
 
   defp description() do
-    "Учебный проект создания базы данных с использованием максимального количества возможностей Erlang/Elixir"
+    "Тестовое задание проект"
   end
 
   defp package() do

@@ -5,13 +5,13 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.16.4">
-    <title>Amn – Database_serv v0.1.1</title>
+    <title>Amn – Database_serv v0.1.2</title>
     <link rel="stylesheet" href="dist/app-5b9e160cec.css" />
     
       <link rel="canonical" href="https://hexdocs.pm/serv/Amn.html" />
     
     
-    <script src="dist/sidebar_items-4d25e1de34.js"></script>
+    <script src="dist/sidebar_items-19ae5e6bc4.js"></script>
     
   </head>
   <body data-type="modules">
@@ -31,7 +31,7 @@
         Database_serv
       </h1>
       <h2 class="sidebar-projectVersion">
-        v0.1.1
+        v0.1.2
       </h2>
     </div>
     
@@ -52,6 +52,8 @@
     
 
     
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+    
 
     
 
@@ -67,10 +69,10 @@
 
 
       <h1>
-        <small class="visible-xs">Database_serv v0.1.1</small>
+        <small class="visible-xs">Database_serv v0.1.2</small>
         Amn
         
-          <a href="https://github.com/Feo740/GenServer/blob/master/lib/amnesia.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -79,9 +81,12 @@
 
       
         <section id="moduledoc">
-          <p>В данном модуле создаем схему базы данных,</p>
-<pre><code class="elixir">          таблицу, запускаем БД, записываем в нее начальные данные,
-          определяем функцию чтения из БД по ключевому полю.</code></pre>
+          <p>В данном модуле создаем схему базы данных (create_database),</p>
+<pre><code class="elixir">          таблицу, запускаем БД(start_database),
+          записываем в нее начальные данные(wr_database),
+          определяем функцию чтения из БД по ключевому полю(rd_database),
+          функция останова БД (stop_database),Функция удаления строки из БД (del_item_database)
+          Функция изменения строки БД (change_item_database).</code></pre>
 
         </section>
       
@@ -104,10 +109,46 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
+    <a href="#add_to_database/0">add_to_database()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Функция внесения новой записи в БД из командной строки</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_to_database_http/1">add_to_database_http(params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Функция добавления строки в таблицу по http</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#change_item_database/1">change_item_database(params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>функция изменения строки в БД</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#create_database/0">create_database()</a>
   </div>
   
     <div class="summary-synopsis"><p>Функция создания шаблона БД</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#del_item_database/1">del_item_database(params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Функция удаления строки из БД</p>
 </div>
   
 </div>
@@ -140,6 +181,16 @@
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#string_parse/1">string_parse(record)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Функция парсинга результатов :mnesia.read в</p>
+<pre><code class="elixir">    строку для отображение на HTML страничке</code></pre>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#wr_database/0">wr_database()</a>
   </div>
   
@@ -167,7 +218,76 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="create_database/0">
+          <div class="detail" id="add_to_database/0">
+  
+  
+  <div class="detail-header">
+    <a href="#add_to_database/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">add_to_database()</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L110" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Функция внесения новой записи в БД из командной строки.</p>
+
+  </section>
+</div>
+<div class="detail" id="add_to_database_http/1">
+  
+  
+  <div class="detail-header">
+    <a href="#add_to_database_http/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">add_to_database_http(params)</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L125" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Функция добавления строки в таблицу по http</p>
+
+  </section>
+</div>
+<div class="detail" id="change_item_database/1">
+  
+  
+  <div class="detail-header">
+    <a href="#change_item_database/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">change_item_database(params)</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L74" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>функция изменения строки в БД</p>
+
+  </section>
+</div>
+<div class="detail" id="create_database/0">
   
   
   <div class="detail-header">
@@ -177,7 +297,7 @@
     </a>
     <span class="signature">create_database()</span>
     
-      <a href="https://github.com/Feo740/GenServer/blob/master/lib/amnesia.ex#L8" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L11" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -187,6 +307,29 @@
   </div>
   <section class="docstring">
     <p>Функция создания шаблона БД</p>
+
+  </section>
+</div>
+<div class="detail" id="del_item_database/1">
+  
+  
+  <div class="detail-header">
+    <a href="#del_item_database/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">del_item_database(params)</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L63" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Функция удаления строки из БД</p>
 
   </section>
 </div>
@@ -200,7 +343,7 @@
     </a>
     <span class="signature">rd_database(nik)</span>
     
-      <a href="https://github.com/Feo740/GenServer/blob/master/lib/amnesia.ex#L31" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L34" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -229,7 +372,7 @@
     </a>
     <span class="signature">start_database()</span>
     
-      <a href="https://github.com/Feo740/GenServer/blob/master/lib/amnesia.ex#L16" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L19" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -252,7 +395,7 @@
     </a>
     <span class="signature">stop_database()</span>
     
-      <a href="https://github.com/Feo740/GenServer/blob/master/lib/amnesia.ex#L41" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L58" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -262,6 +405,30 @@
   </div>
   <section class="docstring">
     <p>Функция останова БД</p>
+
+  </section>
+</div>
+<div class="detail" id="string_parse/1">
+  
+  
+  <div class="detail-header">
+    <a href="#string_parse/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">string_parse(record)</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L49" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Функция парсинга результатов :mnesia.read в</p>
+<pre><code class="elixir">    строку для отображение на HTML страничке</code></pre>
 
   </section>
 </div>
@@ -275,7 +442,7 @@
     </a>
     <span class="signature">wr_database()</span>
     
-      <a href="https://github.com/Feo740/GenServer/blob/master/lib/amnesia.ex#L21" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/amnesia.ex#L24" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>

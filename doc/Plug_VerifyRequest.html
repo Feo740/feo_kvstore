@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.16.4">
-    <title>ServSUP – Database_serv v0.1.2</title>
+    <title>Plug_VerifyRequest – Database_serv v0.1.2</title>
     <link rel="stylesheet" href="dist/app-5b9e160cec.css" />
     
-      <link rel="canonical" href="https://hexdocs.pm/serv/ServSUP.html" />
+      <link rel="canonical" href="https://hexdocs.pm/serv/Plug_VerifyRequest.html" />
     
     
     <script src="dist/sidebar_items-19ae5e6bc4.js"></script>
@@ -70,9 +70,9 @@
 
       <h1>
         <small class="visible-xs">Database_serv v0.1.2</small>
-        ServSUP
+        Plug_VerifyRequest
         
-          <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/superV.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/verify_request.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -81,8 +81,7 @@
 
       
         <section id="moduledoc">
-          <p>Модуль определяет механику работы супервизора. ServSUP</p>
-<pre><code class="elixir">           - это супервизор генсервера serv</code></pre>
+          <p>Модуль определяет сценарий обработки http-запросов</p>
 
         </section>
       
@@ -105,20 +104,27 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#init/1">init(arg)</a>
+    <a href="#call/2">call(conn, opts)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Обратный вызов Супервизора настраиваем процесс-воркер</p>
+    <div class="summary-synopsis"><p>Определяем нужно ли вообще проверять данный запрос,</p>
+<pre><code class="elixir">    если не срабатывает ни одно условие, просто пробрасываем структуру conn дальше</code></pre>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#start_link/0">start_link()</a>
+    <a href="#contains_fields?/2">contains_fields?(keys, fields)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Запуск супервизора</p>
+    <div class="summary-synopsis"><p>Функция проверяет наличие полей по всем ключам</p>
 </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#init/1">init(options)</a>
+  </div>
   
 </div>
 
@@ -141,7 +147,54 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="init/1">
+          <div class="detail" id="call/2">
+  
+  
+  <div class="detail-header">
+    <a href="#call/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">call(conn, opts)</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/verify_request.ex#L12" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Определяем нужно ли вообще проверять данный запрос,</p>
+<pre><code class="elixir">    если не срабатывает ни одно условие, просто пробрасываем структуру conn дальше.</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="contains_fields?/2">
+  
+  
+  <div class="detail-header">
+    <a href="#contains_fields?/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">contains_fields?(keys, fields)</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/verify_request.ex#L41" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Функция проверяет наличие полей по всем ключам</p>
+
+  </section>
+</div>
+<div class="detail" id="init/1">
   
   
   <div class="detail-header">
@@ -149,9 +202,9 @@
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <span class="signature">init(arg)</span>
+    <span class="signature">init(options)</span>
     
-      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/superV.ex#L12" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/verify_request.ex#L9" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -160,31 +213,7 @@
     
   </div>
   <section class="docstring">
-    <p>Обратный вызов Супервизора настраиваем процесс-воркер</p>
-
-  </section>
-</div>
-<div class="detail" id="start_link/0">
-  
-  
-  <div class="detail-header">
-    <a href="#start_link/0" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <span class="signature">start_link()</span>
     
-      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/superV.ex#L7" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>Запуск супервизора</p>
-
   </section>
 </div>
 

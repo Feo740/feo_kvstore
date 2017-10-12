@@ -5,13 +5,13 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.16.4">
-    <title>D_apl – Database_serv v0.1.1</title>
+    <title>D_apl – Database_serv v0.1.2</title>
     <link rel="stylesheet" href="dist/app-5b9e160cec.css" />
     
       <link rel="canonical" href="https://hexdocs.pm/serv/D_apl.html" />
     
     
-    <script src="dist/sidebar_items-4d25e1de34.js"></script>
+    <script src="dist/sidebar_items-19ae5e6bc4.js"></script>
     
   </head>
   <body data-type="modules">
@@ -31,7 +31,7 @@
         Database_serv
       </h1>
       <h2 class="sidebar-projectVersion">
-        v0.1.1
+        v0.1.2
       </h2>
     </div>
     
@@ -52,6 +52,8 @@
     
 
     
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+    
 
     
 
@@ -67,10 +69,10 @@
 
 
       <h1>
-        <small class="visible-xs">Database_serv v0.1.1</small>
+        <small class="visible-xs">Database_serv v0.1.2</small>
         D_apl
         
-          <a href="https://github.com/Feo740/GenServer/blob/master/lib/d_apl.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/d_apl.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -102,6 +104,18 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
+    <a href="#add_to_database/0">add_to_database()</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create_mnesia/0">create_mnesia()</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#init/1">init(list)</a>
   </div>
   
@@ -116,6 +130,24 @@
   
     <div class="summary-synopsis"><p>В рамках главного приложения запуск супервизора</p>
 </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#start_database/0">start_database()</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#write_database/0">write_database()</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#zapros/1">zapros(nik)</a>
+  </div>
   
 </div>
 
@@ -138,7 +170,51 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="init/1">
+          <div class="detail" id="add_to_database/0">
+  
+  
+  <div class="detail-header">
+    <a href="#add_to_database/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">add_to_database()</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/d_apl.ex#L43" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="create_mnesia/0">
+  
+  
+  <div class="detail-header">
+    <a href="#create_mnesia/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">create_mnesia()</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/d_apl.ex#L31" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="init/1">
   
   
   <div class="detail-header">
@@ -148,7 +224,7 @@
     </a>
     <span class="signature">init(list)</span>
     
-      <a href="https://github.com/Feo740/GenServer/blob/master/lib/d_apl.ex#L11" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/d_apl.ex#L19" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -171,7 +247,7 @@
     </a>
     <span class="signature">start(type, args)</span>
     
-      <a href="https://github.com/Feo740/GenServer/blob/master/lib/d_apl.ex#L6" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/d_apl.ex#L7" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -182,6 +258,72 @@
   <section class="docstring">
     <p>В рамках главного приложения запуск супервизора</p>
 
+  </section>
+</div>
+<div class="detail" id="start_database/0">
+  
+  
+  <div class="detail-header">
+    <a href="#start_database/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">start_database()</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/d_apl.ex#L39" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="write_database/0">
+  
+  
+  <div class="detail-header">
+    <a href="#write_database/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">write_database()</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/d_apl.ex#L35" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="zapros/1">
+  
+  
+  <div class="detail-header">
+    <a href="#zapros/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">zapros(nik)</span>
+    
+      <a href="https://github.com/Feo740/feo_kvstore/blob/master/lib/d_apl.ex#L27" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
   </section>
 </div>
 
