@@ -17,7 +17,7 @@ defmodule Router do
   plug :dispatch # подключаем встроенный модуль Serv.zapros("#{nik}")
 
   get "/:nik", do: send_resp(conn, 200,  List.to_string(List.delete_at(Tuple.to_list(Serv.zapros("#{nik}")),0)) ) # Обработка запроса к родительскому узлу
-  post "/upload", do: send_resp(conn, 201, "Upload complite\n")
+  post "/upload", do: send_resp(conn, 201, "Upload complete\n")
   delete "/delete", do: send_resp(conn, 403, "delete complete\n")
   put "/changes", do: send_resp(conn, 205, "changes complete\n")
   match _, do: send_resp(conn, 404, "Oops!\n") # Обработка всех остальных запросов

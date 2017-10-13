@@ -8,7 +8,7 @@ require Logger
       [nik, ttl] ->
         Logger.info("Начинаем отсчет #{ttl} секунд")
         :timer.sleep(ttl*1000)
-        Logger.info("Начинаем отсчет закончен")
+        Logger.info("Отсчет закончен")
       try do
        {:atomic, [record]} = :mnesia.transaction(fn ->
        :mnesia.delete({:p_players, nik}) end)
