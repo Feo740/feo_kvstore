@@ -11,7 +11,8 @@ defmodule Serv do
   end
   @doc "Метод инициализации генсервера"
   def init([]) do
-    {:ok, []}
+    Amn.start_database()
+    {:ok, []} 
   end
 
   @doc "Передаем в вызове ключевое поле записи БД, возвращаем запись"

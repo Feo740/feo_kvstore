@@ -24,8 +24,8 @@ defmodule D_apl do
     #Supervisor.start_link(children, strategy: :one_for_one)
   end
 
-  def zapros(nik) do
-    Serv.zapros(nik)
+  def zapros(key) do
+    Serv.zapros(key)
   end
 
   def create_mnesia do
