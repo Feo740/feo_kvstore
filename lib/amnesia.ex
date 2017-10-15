@@ -94,10 +94,10 @@ defmodule Amn do
   end
 
   @doc "Функция добавления строки в таблицу по http"
-  def add_to_database_http(params) do
-    key = Map.get(params, "key")
-    data = Map.get(params, "data")
-    ttl = String.to_integer(Map.get(params, "ttl"))
+  def add_to_database_http(key, data, ttl) do
+    #key = Map.get(params, "key")
+    #data = Map.get(params, "data")
+    #ttl = String.to_integer(Map.get(params, "ttl"))
     :mnesia.transaction(fn ->:mnesia.write({:kvs, key, data, ttl}) end)
   end
 
