@@ -32,10 +32,6 @@ defmodule D_apl do
     Serv.create_mnesia
   end
 
-  def write_database do
-    Serv.write_database
-  end
-
   def start_database do
     Serv.start_database
   end

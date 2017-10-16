@@ -1,7 +1,7 @@
 defmodule Serv do
 @moduledoc "Основной модуль приложения - генсервер"
   use GenServer
-  @doc "Функция состояния, навырост ака заглушка"
+  @doc "Функция состояния"
   defmodule State do
     defstruct count: 0
   end
@@ -12,7 +12,7 @@ defmodule Serv do
   @doc "Метод инициализации генсервера"
   def init([]) do
     Amn.start_database()
-    {:ok, []} 
+    {:ok, []}
   end
 
   @doc "Передаем в вызове ключевое поле записи БД, возвращаем запись"
@@ -24,12 +24,6 @@ defmodule Serv do
   @doc "Передаем в вызове :create, создаем базу данных"
   def handle_call(:create,_from,state) do
     reply={:ok, Amn.create_database}
-    {:reply, reply, state}
-  end
-
-  @doc "Передаем в вызове :write, записываем в БД начальные значения"
-  def handle_call(:write,_from,state) do
-    reply={:ok, Amn.wr_database}
     {:reply, reply, state}
   end
 
@@ -59,9 +53,6 @@ defmodule Serv do
 
   @doc "клиентская часть, создаем БД"
   def create_mnesia, do: GenServer.call(__MODULE__,:create)
-
-  @doc "клиентская часть, записываем начальные значения"
-  def write_database, do: GenServer.call(__MODULE__,:write)
 
   @doc "клиентская часть, запускаем БД"
   def start_database, do: GenServer.call(__MODULE__,:start_db)
