@@ -19,19 +19,19 @@ defmodule Router do
   @spec upload(Map) :: String.t
   def upload(conn) do
     fields = ["data", "ttl"]
+    #IO.inspect(Enum.all?(fields, &(&1 in Map.keys(Map.get(conn, :body_params)))))
     if (Enum.all?(fields, &(&1 in Map.keys(Map.get(conn, :body_params))))) do
       key = List.to_string(Map.get(conn, :path_info))
       data = Map.get(Map.get(conn, :body_params),"data")
       ttl = String.to_integer(Map.get(Map.get(conn, :body_params),"ttl"))
-      :mnesia.transaction(fn ->:mnesia.write({:kvs, key, data, ttl}) end)
       pid = spawn(Ttl120, :del120, [key, ttl])
-      a_key = String.to_atom(key)
-      Process.register(pid, a_key)
+      :mnesia.transaction(fn ->:mnesia.write({:kvs, key, data, ttl, pid}) end)
       send(pid, [key, ttl])
       "Key: #{key} uploaded data #{data} for #{ttl} seconds."
     else
       "not enough data"
     end
+
   end
 
   @doc "Функция удаления строки из БД"
@@ -40,7 +40,11 @@ defmodule Router do
     key = List.to_string(Map.get(conn, :path_info))
     try do
       {:atomic, [record]} = :mnesia.transaction(fn ->
+                                               :mnesia.read({:kvs, key}) end)
+      pid = List.last(Tuple.to_list(record))
+      {:atomic, [record]} = :mnesia.transaction(fn ->
       :mnesia.delete({:kvs, key}) end)
+      Process.exit(pid, :kill)
     rescue
       error -> error
     end
@@ -51,9 +55,9 @@ defmodule Router do
   @spec put(Map) :: String.t
   def put(conn) do
     key = List.to_string(Map.get(conn, :path_info))
-    a_key = String.to_atom(key)
     {:atomic, [record]} = :mnesia.transaction(fn ->
-                                               :mnesia.read({:kvs, key}) end)
+                                             :mnesia.read({:kvs, key}) end)
+    pid = List.last(Tuple.to_list(record))
     record = List.delete_at(List.delete_at((Tuple.to_list(record)),0), 0)
     if (Map.has_key?(Map.get(conn, :body_params),"data")) do
       data = Map.get(Map.get(conn, :body_params),"data")
@@ -62,13 +66,12 @@ defmodule Router do
     end
     if (Map.has_key?(Map.get(conn, :body_params),"ttl")) do
       ttl = String.to_integer(Map.get(Map.get(conn, :body_params),"ttl"))
-      Process.exit((Process.whereis(a_key)), :kill)
+      Process.exit(pid, :kill)
     else
       ttl = List.first(List.delete_at(record, 0))
     end
-    :mnesia.transaction(fn ->:mnesia.write({:kvs, key, data, ttl}) end)
     pid = spawn(Ttl120, :del120, [key, ttl])
-    Process.register(pid, a_key)
+    :mnesia.transaction(fn ->:mnesia.write({:kvs, key, data, ttl, pid}) end)
     send(pid, [key, ttl])
     "Key: #{key} changed data #{data} for #{ttl} seconds."
     "changed complete"

@@ -16,8 +16,8 @@ defmodule Serv do
   end
 
   @doc "Передаем в вызове ключевое поле записи БД, возвращаем запись"
-  def handle_call({nik},_from,state) do
-    reply={:ok, Amn.rd_database(nik)}
+  def handle_call({key},_from,state) do
+    reply={:ok, Amn.rd_database(key)}
     {:reply, reply, state}
   end
 
@@ -49,7 +49,7 @@ defmodule Serv do
   end
 
   @doc "клиентская часть, возвращаем запись по ключевому полю"
-  def zapros(nik), do: GenServer.call(__MODULE__,{nik})
+  def zapros(key), do: GenServer.call(__MODULE__,{key})
 
   @doc "клиентская часть, создаем БД"
   def create_mnesia, do: GenServer.call(__MODULE__,:create)

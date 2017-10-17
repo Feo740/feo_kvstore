@@ -12,7 +12,8 @@ defmodule Amn do
     :mnesia.create_schema([node()])#создаем БД,в рабочем кат.
                                   #появится папка Mnesia.nonode@nohost
                                   #в этом каталоге созд файл schema.DAT
-    :mnesia.create_table(:kvs,[{:disc_copies,[node()]},{:attributes,[:key, :data, :ttl]}])
+    :mnesia.start()
+    :mnesia.create_table(:kvs,[{:disc_copies,[node()]},{:attributes,[:key, :data, :ttl, :pid]}])
   end
 
   @doc "Функция запуска БД"
@@ -46,8 +47,8 @@ defmodule Amn do
             key = String.trim(IO.gets("Insert key:")) # Trim для отбрасывания хвоста /n
             data = String.trim(IO.gets("Insert data:"))
             ttl = String.to_integer(String.trim(IO.gets("Insert ttl:")))
-            :mnesia.transaction(fn ->:mnesia.write({:kvs, key, data, ttl}) end)
             pid = spawn(Ttl120, :del120, [key, ttl])
+            :mnesia.transaction(fn ->:mnesia.write({:kvs, key, data, ttl, pid}) end)
             send(pid, [key, ttl])
       end
   end
